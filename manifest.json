@@ -1,0 +1,15 @@
+{
+  "manifest_version": 3,
+  "name": "My Chrome Extension",
+  "version": "1.0",
+  "description": "My awesome Chrome extension with content script and background script",
+  "permissions": ["scripting", "tabs", "activeTab"],
+  "host_permissions": ["<all_urls>"],
+  "background": {
+    "service_worker": "./background.js"
+  },
+  "action": {
+    "default_title": "LinkBuddy",
+    "default_popup": "./popup.html"
+  }
+}
