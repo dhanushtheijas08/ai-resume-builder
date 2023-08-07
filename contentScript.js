@@ -1,7 +1,6 @@
 console.log("content script injected");
 const promptTextArea = document.querySelector("#prompt-textarea");
 const parentElement = promptTextArea.parentNode;
-
 let prompt;
 const divider = `
 <div class="flex gap-4 px-2 pb-4">
@@ -32,27 +31,17 @@ const divider = `
     <option value="achievements">Achievements </option>
   </select>
 </div>
-
-<div>
-  <label for="length">Length:</label>
-  <select
-    id="length"
-    class="bg-gray-100 border-0 text-sm rounded block w-full dark:bg-gray-600 dark:border-gray-600 dark:hover:bg-gray-900 dark:placeholder-gray-400 dark:text-white hover:bg-gray-200 focus:ring-0"
-  >
-    <option value="short">short</option>
-    <option value="long">long</option>
-  </select>
-</div>
 </div>
 `;
 parentElement.insertAdjacentHTML("afterbegin", divider);
 const buttonElement = parentElement.querySelector("button");
 
-let selectedField, selectedSection, selectedLength;
+let selectedField, selectedSection;
 // Field
 const fieldDropdown = document.getElementById("field");
 fieldDropdown.addEventListener("change", function () {
   selectedField = fieldDropdown.value;
+  console.log(selectedField);
 });
 
 // Resume Section
@@ -61,14 +50,9 @@ sectionDropDown.addEventListener("change", function () {
   selectedSection = sectionDropDown.value;
 });
 
-// Experience Section
-const lengthDropDown = document.getElementById("length");
-lengthDropDown.addEventListener("change", function () {
-  selectedLength = lengthDropDown.value;
-});
-
 buttonElement.addEventListener("click", function () {
   let newPrompt;
+  console.log("hi");
   switch (selectedSection) {
     case "skills":
       newPrompt = `[Job Role] = ${selectedField}, [Given Section] = ${selectedSection}, [User Details] = ${promptTextArea.value}
@@ -81,7 +65,7 @@ buttonElement.addEventListener("click", function () {
     - To make the information easier to read and scan, consider presenting the sections in bullet points.
 
   Structure:
-    [1] = "Technical Skills" Heading.
+    [1] = Heading.
     [2] = subheadings that list specific skills or tools related to Technical Skills category for the [Job Role] roles.
     [3] = content under each subheading provides details about the skills, languages, frameworks, and tools the [Job Role] developer is proficient in.
 
@@ -90,15 +74,14 @@ buttonElement.addEventListener("click", function () {
   Formatting:
     Follow this Skill List structure: 
     "[1](Bold Text) : 
-        •[2] : [3], [3]....
-        •[2] : [3], [3]...."
+        • [2] : [3], [3]....
 
   Your task: Create high optimized skills that are relevant for [Job Role] base on the [User Details ].
     - Write the skill section based on the user details.
     - Do not include all the skills set for [Job Role] instead generate result based on the user Details 
     - If any skills which is nessary to become [Job Role] which is not specified in the user details you can say the user that "The [skill] is required to become [Job Role] developer" only if the skill is more important.
     - Transform [User details] into highly optimized content with an exceptional ATS (Applicant Tracking System) score
-  Example Skill Section:
+  Sample Skill Section:
     Technical Skills(Bold Text):
         • Programming Languages: HTML, CSS, JavaScript, TypeScript
         • Front-End Frameworks: React, Angular, Vue.js
@@ -230,7 +213,7 @@ Example Education Section:
       break;
   }
 
-  promptTextArea.value = promptTextArea.value + sampleInput;
+  promptTextArea.value = newPrompt;
 });
 
 // <textarea id="prompt-textarea" tabindex="0" data-id="request-:r3a:-2" rows="1" placeholder="Send a message" class="m-0 w-full resize-none border-0 bg-transparent p-0 pr-10 focus:ring-0 focus-visible:ring-0 dark:bg-transparent md:pr-12 pl-3 md:pl-0" style="max-height: 200px; height: 24px; overflow-y: hidden;"></textarea>
