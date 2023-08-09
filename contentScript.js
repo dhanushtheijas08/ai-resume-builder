@@ -29,6 +29,7 @@ const divider = `
     <option value="projects">Projects</option>
     <option value="education">Education</option>
     <option value="achievements">Achievements </option>
+    <option value="experience">Experience </option>
   </select>
 </div>
 </div>
@@ -55,82 +56,31 @@ buttonElement.addEventListener("click", function () {
   console.log("hi");
   switch (selectedSection) {
     case "skills":
-      newPrompt = `[Job Role] = ${selectedField}, [Given Section] = ${selectedSection}, [User Details] = ${promptTextArea.value}
-  You are an experienced resume writer especially writing for [Job Role] roles with high ATS score, your focus is on the [Given Scetion] section of [Job Role]'s resume. I will give you a Details , and you will provide a detailed contnet for my resume with high ATS Score. 
-  Please adhere to the structure and formatting below, and follow these guidelines:
-    - Do not use a generic list of skills that are not tailored to the [Job Role] job application. For example, listing common skills like "communication skills" or "team player" is not relevant.
-    - Do not overloading the skills section with irrelevant keywords or excessively repeating the same skills multiple times. 
-    - Use keywords relevant to the job posting but ensure they are used in a natural and contextually appropriate way.
-    - Do not include the skills that are not relevant to the job you are applying.
-    - To make the information easier to read and scan, consider presenting the sections in bullet points.
+      newPrompt = `
+You are an experienced resume writer especially writing for ${selectedField} roles with high ATS score, your focus is on the skills section of a ${selectedField}'s resume. ${promptTextArea.value} Here is the short details about my ${selectedSection} section, and you need your expertise to transform them into highly optimized content with an exceptional ATS (Applicant Tracking System) score. Let's create a standout skills section using bullet points with single words (e.g., HTML, Tailwind CSS, React) while also including essential ${selectedField} skills. Do not include all the skills set for ${selectedField} instead generate result based on the user Details.If any skills which is necessary to become ${selectedField} which is not specified in the user details you can say the user that "The [skill] is required to become ${selectedField} developer" only if the skill is more important.
 
-  Structure:
-    [1] = Heading.
-    [2] = subheadings that list specific skills or tools related to Technical Skills category for the [Job Role] roles.
-    [3] = content under each subheading provides details about the skills, languages, frameworks, and tools the [Job Role] developer is proficient in.
-
-    Remember to customize the content based on the actual skills for [Job Role].
-
-  Formatting:
-    Follow this Skill List structure: 
-    "[1](Bold Text) : 
-        • [2] : [3], [3]....
-
-  Your task: Create high optimized skills that are relevant for [Job Role] base on the [User Details ].
-    - Write the skill section based on the user details.
-    - Do not include all the skills set for [Job Role] instead generate result based on the user Details 
-    - If any skills which is nessary to become [Job Role] which is not specified in the user details you can say the user that "The [skill] is required to become [Job Role] developer" only if the skill is more important.
-    - Transform [User details] into highly optimized content with an exceptional ATS (Applicant Tracking System) score
-  Sample Skill Section:
+  Here is the blue print for Skill Section always follow this:
     Technical Skills(Bold Text):
-        • Programming Languages: HTML, CSS, JavaScript, TypeScript
-        • Front-End Frameworks: React, Angular, Vue.js
-        • CSS Preprocessors: SASS, LESS
-        • Build Tools: Webpack
-        • Package Managers: npm, Yarn
-        • Version Control: Git, GitHub`;
+      • Frameworks & Libraries
+        • HTML
+        • CSS
+        • ReactJs
+      • Version Control
+        • Git
+        • Github
+      • Other Tools
+        • VSCode`;
       break;
     case "projects":
-      newPrompt = `[Job Role] = ${selectedField}, [Given Section] = ${selectedSection}, [User Details] = ${promptTextArea.value}
-You are an experienced resume writer especially writing for [Job Role] roles with high ATS score, your focus is on the [Given Scetion] section of [Job Role]'s resume. I will give you a detials, and you will provide a detailed contnet for my resume with high ATS Score. 
+      newPrompt = `You are an experienced resume writer especially writing for ${selectedField} roles with high ATS score, your focus is on the skills section of a ${selectedField}'s resume. ${promptTextArea.value} Here is the short details about my ${selectedSection} section, and you need your expertise to transform them into highly optimized content with an exceptional ATS (Applicant Tracking System) score.Be specific and concise when describing the projects. Highlight the main features and outcomes, and quantify the impact if possible. Only use the given data by the user to generate any projects by your own.Do not include the projects that are not relevant to the job applying for, which can confuse the ATS and the recruiters.Use layman's terms whenever possible, and provide very short explanations for any technical terms that are crucial to understanding the project.To make the information easier to read and scan, consider presenting the sections in bullet points.Including metrics like percentages, numerical values, or specific data points like "Optimized the website's checkout process, resulting in a 20% increase in conversion rate", However, make sure that the metrics use are accurate, relevant, and verifiable. Avoid exaggerating or providing misleading information. If possible, back up the claims with additional context or explain how you measured the metrics and try to ask the user to provide some proof. 
 
-Please adhere to the structure and formatting below, and follow these guidelines:
-
-- Be specific and concise when describing the projects. Highlight the main features and outcomes, and quantify the impact if possible.
-- Do not include the projects that are not relevant to the job applying for, which can confuse the ATS and the recruiters.
-- Clearly list the relevant technologies used in each project also make bold text to the technologies used. Use industry-standard names and avoid abbreviations or jargon.
-- Use layman's terms whenever possible, and provide very short explanations for any technical terms that are crucial to understanding the project.
-- To make the information easier to read and scan, consider presenting the sections in bullet points.
-- Including metrics like percentages, numerical values, or specific data points like "Optimized the website's checkout process, resulting in a 20% increase in conversion rate", However, make sure that the metrics use are accurate, relevant, and verifiable. Avoid exaggerating or providing misleading information. If possible, back up the claims with additional context or explain how you measured the metrics and try to ask the user to provide some proof. 
-
-
-Structure:
-[1] = Project Title: Provide a clear and descriptive title for each project.
-[2] = Project Description: Summarize the purpose and features of the project.
-[3] = Technologies Used: List the front-end technologies, frameworks, and tools used in the project.
-
-Project Link : Include a hyperlink to the live project, GitHub repository, or portfolio page for easy access to your work.
-
-Formatting:
-Follow this Skill List structure: 
-"  [1](Bold Text) : 
-    • Description: 
-        •[2]....
-        •[2]....
-        •[2]....
-    •Technologies Used:
-        •[3], [3], [3]....
-"
-Your task: Create high optimized Project Section that are relavent for [Job Role] base on the [User Detials].
+Your task: Create high optimized Project Section that are relavent for ${selectedField} base on the [User Detials].
 
 - Write the Proper Title for Projects.
-- Write the 3 points for the Description.
-- Bullet Points: To make the information easier to read and scan, consider presenting the "Description," and "Technologies Used," sections in bullet points.
-- Transform [User details] into highly optimized content with an exceptional ATS (Applicant Tracking System) score
+- Write 3 bullet points for the Description.
 
-
-Example Skill Section:
-    E-commerce Website (Bold Text)
+  Here is the blue print for Skill Section always follow this, and this is just for your reference:
+    E-commerce Website:
     [Live Preview](hyperlink) | [GitHub](hyperlink)
         • Description:
             • Developed a responsive e-commerce website that allows users to browse products, add items to the cart, and proceed to checkout.
@@ -143,49 +93,33 @@ Example Skill Section:
 `;
       break;
     case "education":
-      newPrompt = `[Job Role] = ${selectedField}, [Given Section] = ${selectedSection}, [User Details] = ${promptTextArea.value}
-      You are an experienced resume writer especially writing for [Job Role] roles with high ATS score, your focus is on the [Given Scetion] section of [Job Role]'s resume. I will give you a detials, and you will provide a detailed contnet for my resume with high ATS Score. 
+      newPrompt = `
+      You are an experienced resume writer with high ATS score, your focus is on the ${selectedSection} section of resume. Here is the  detials about me ${promptTextArea.value}, and you will provide a contnet ${selectedSection} section of my resume with high ATS Score based on my blue print. 
 
 Please adhere to the structure and formatting below, and follow these guidelines:
 
+- Generate content based the my personal data.
 - Double-check and ensure that the user have included the correct names of institutions, degrees earned, dates of graduation, and any relevant honors or awards.
-- Omite the GPA (Grade Point Average), especially if less CGPA.
+- Omite the GPA (Grade Point Average), especially if less than 7.5 / 10 or 3 / 5.
 - Use chronological order to present the education section.
 
-Structure:
-    [1] = Highest Qualification (e.g., Bachelor's in Computer Science)
-    [2] = University or Institution's Name
-    [3] = Starting Year - Completion Year
-    [4] = CGPA (only if higher, e.g., 7.5/10 or 3/5); otherwise, no needfor CGPA.
-    [5] = Location
-
-Formatting:
-Follow this Skill List structure: 
-"  [1](Bold Text) : 
-    • [2]
-    • [3] (Starting Year - Completion Year)
-    • [4] (optional)
-    • [5] (optional)
-"
-Your task: Create high optimized [Given Scetion] Section.
-- Make sure that the contnet genereated is ATS frienflly
-
-
-Example Education Section:
-
+Here is the blue print for  Education Section :
     Bachelor of Science in Computer Science
     XYZ University
     May 2021 - May 2025
     CGPA : 8.30
-    Cityville, Stateville`;
+    Cityville, Stateville `;
       break;
+
     case "certifications":
-      newPrompt = `[Job Role] = ${selectedField}, [Given Section] = ${selectedSection}, [User Details] = ${promptTextArea.value}
-      You are an experienced resume writer especially writing for [Job Role] roles with high ATS score, your focus is on the [Given Scetion] section of [Job Role]'s resume. I will give you a detials, and you will provide a detailed contnet for my resume with high ATS Score. 
+      newPrompt = `
+      You are an experienced resume writer especially writing for ${selectedField} roles with high ATS score, your focus is on the ${selectedSection} section of ${selectedField}'s resume. Here is the list of course ${promptTextArea.value}, and you will provide a detailed contnet for my resume with high ATS Score. 
 
 Please adhere to the structure and formatting below, and follow these guidelines:
 
+- Do not generate the description just follow the structure.
 - Do not include too many certifications without instead focus on the most relevant ones.
+- Only use the given data by the user to generate any certificates by your own.
 - Use chronological order to present the education section.
 - Include links to the official certification pages or provide proof of certification on the portfolio or LinkedIn profile use as hyperlink.
 
@@ -196,26 +130,52 @@ Formatting:
 Follow this Skill List structure: 
     "[1](hyperlink)"
 
-Your task: Create high optimized [Given Scetion] Section.
-- Make sure that the contnet genereated is ATS frienflly
-
-
 Example Education Section:
     [React.js Developer Certification By Meta](hyperlink)
 
       Also advice the user to use hyperlink of the certifications doc
       `;
       break;
+
     case "achievements":
       newPrompt = `Attention resume content optimization experts! your focus is on the Awards and Honors section of a ${selectedField}'s resume. Here is the details about my awards and honors ${promptTextArea.value}, and I need your expertise to create optimized content with an outstanding ATS (Applicant Tracking System) score. We should only include awards and honors that are related to the ${selectedField} field. If a particular award or honor isn't added, please explain the reason behind its omission. How can we strategically present these achievements to impress potential employers and demonstrate the ${selectedField}'s excellence and recognition in the industry and the awards and honors section in bullet points`;
       break;
+
+    case "experience":
+      newPrompt = `  You are an experienced resume writer especially writing for ${selectedField} roles with high ATS score, your focus is on the ${selectedSection} section of ${selectedField}'s resume. Here is the Details of my experience ${promptTextArea.value} , and you will provide a detailed contnet for my resume with high ATS Score. 
+  Please adhere to the structure and formatting below, and follow these guidelines:
+    - Be specific and highlight measurable results or contributions to demonstrate your impact in previous roles.
+    - Use bullet points to break down the responsibilities and achievements into concise and easily scannable points.
+    - Use keywords relevant to the job posting but ensure they are used in a natural and contextually appropriate way.
+    - Focus on showcasing experiences that directly relate to the job you are seeking.
+    - Use chronological order to present the experience section.
+    - Include the months and years for each position held, ask the user if he didn't mention.
+
+  Structure:
+    [1] = Job Title: Provide the title of your position in the company.
+    [2] = Company Name: Include the name of the company or organization you worked for.
+    [3] = Dates of Employment: Include the start and end dates of your employment for each position.
+  [4] = Description of Responsibilities and Achievements: Provide a concise description of your key responsibilities and notable achievements in the role. Use bullet points for better readability and try to give the points which will answer "In which technology you user worked", "What impact it brings" and the description should only be 4 points and generate the content with simple and human touch .
+
+  Your task: Create high optimized skills that are relevant for ${selectedField} base on the [User Details ].
+    - Write the skill section based on the user details.
+    - Do not include all the skills set for ${selectedField} instead generate result based on the user Details 
+    - If any skills which is nessary to become ${selectedField} which is not specified in the user details you can say the user that "The [skill] is required to become ${selectedField} developer" only if the skill is more important.
+    - Transform [User details] into highly optimized content with an exceptional ATS (Applicant Tracking System) score
+  Example Skill Section:
+      Front-End Developer
+      TechSolutions Inc.
+      June 2019 - September 2022
+      - Collaborated with cross-functional teams to design and develop responsive web applications using HTML5, CSS3, and JavaScript, ensuring optimal user experience across various devices and browsers.
+      - Led the redesign of the company's flagship product, resulting in a 30% increase in user engagement and a 20% reduction in bounce rates.
+      - Implemented modern front-end frameworks like React.js, enhancing code maintainability and enabling rapid feature development, leading to a 40% decrease in development time.
+      - Improved website performance by optimizing critical rendering paths, reducing page load times by an average of 25% and enhancing overall user satisfaction.
+`;
+      break;
+
     default:
       break;
   }
 
   promptTextArea.value = newPrompt;
 });
-
-// <textarea id="prompt-textarea" tabindex="0" data-id="request-:r3a:-2" rows="1" placeholder="Send a message" class="m-0 w-full resize-none border-0 bg-transparent p-0 pr-10 focus:ring-0 focus-visible:ring-0 dark:bg-transparent md:pr-12 pl-3 md:pl-0" style="max-height: 200px; height: 24px; overflow-y: hidden;"></textarea>
-
-// <textarea id="prompt-textarea" tabindex="0" data-id="root" rows="1" placeholder="[keyword]" class="m-0 w-full resize-none border-0 bg-transparent p-0 pr-10 focus:ring-0 focus-visible:ring-0 dark:bg-transparent md:pr-12 pl-3 md:pl-0" style="max-height: 200px; height: 24px; overflow-y: hidden;"></textarea>
