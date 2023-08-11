@@ -36,7 +36,28 @@ const divider = `
     <option value="education">Education</option>
   </select>
 </div>
+  
+  <div class="flex flex-col">
+  <label for="resume">Uploade Resume: </label>
+
+          <label
+      class="relative cursor-pointer bg-green-600 text-white px-4 py-2 rounded-md shadow-md "
+    >
+      <span>Select a File</span>
+      <input
+        type="file"
+        class="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
+      />
+    </label>
+  </div>
+
+
+  
 </div>
+`;
+
+let uploadefiles = `
+
 `;
 parentElement.insertAdjacentHTML("afterbegin", divider);
 const buttonElement = parentElement.querySelector("button");
@@ -56,8 +77,8 @@ sectionDropDown.addEventListener("change", function () {
 });
 
 buttonElement.addEventListener("click", function () {
-  let newPrompt;
-  console.log("hi");
+  let newPrompt = "";
+  if (!selectedField && !selectedSection) return;
   switch (selectedSection) {
     case "skills":
       newPrompt = `
