@@ -14,6 +14,10 @@ const divider = `
     <option value="frontend">Frontend Developer</option>
     <option value="backend">Backend Developer</option>
     <option value="fullstack">Full Stack Developer</option>
+    <option value="app developer">Mobile App Developer</option>
+    <option value="devOps">DevOps</option>
+    <option value="cloud computing">Cloud Computing</option>
+    <option value="AR/VR developer:">AR/VR Developer</option>
   </select>
 </div>
 
@@ -24,12 +28,12 @@ const divider = `
     class="bg-gray-100 border-0 text-sm rounded block w-full dark:bg-gray-600 dark:border-gray-600 dark:hover:bg-gray-900 dark:placeholder-gray-400 dark:text-white hover:bg-gray-200 focus:ring-0"
   >
     <option value="default">Select Section</option>
-    <option value="certifications">Certifications</option>
-    <option value="skills">Skills</option>
+    <option value="experience">Experience</option>
     <option value="projects">Projects</option>
+    <option value="skills">Skills</option>
+    <option value="achievements">Achievements</option>
+    <option value="certifications">Certifications</option>
     <option value="education">Education</option>
-    <option value="achievements">Achievements </option>
-    <option value="experience">Experience </option>
   </select>
 </div>
 </div>
@@ -155,7 +159,7 @@ Example Education Section:
     [1] = Job Title: Provide the title of your position in the company.
     [2] = Company Name: Include the name of the company or organization you worked for.
     [3] = Dates of Employment: Include the start and end dates of your employment for each position.
-  [4] = Description of Responsibilities and Achievements: Provide a concise description of your key responsibilities and notable achievements in the role. Use bullet points for better readability and try to give the points which will answer "In which technology you user worked", "What impact it brings" and the description should only be 4 points and generate the content with simple and human touch .
+    [4] = Description of Responsibilities and Achievements: Provide a concise description of your key responsibilities and notable achievements in the role. Use bullet points for better readability and try to give the points which will answer "In which technology you user worked", "What impact it brings" and the description should only be 4 points and generate the content with simple and human touch .
 
   Your task: Create high optimized skills that are relevant for ${selectedField} base on the [User Details ].
     - Write the skill section based on the user details.
