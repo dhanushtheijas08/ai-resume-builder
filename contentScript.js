@@ -75,6 +75,7 @@ const sectionDropDown = document.getElementById("section");
 sectionDropDown.addEventListener("change", function () {
   selectedSection = sectionDropDown.value;
 });
+console.log(promptTextArea.childNodes);
 
 buttonElement.addEventListener("click", function () {
   let newPrompt = "";
