@@ -67,7 +67,6 @@ let selectedField, selectedSection;
 const fieldDropdown = document.getElementById("field");
 fieldDropdown.addEventListener("change", function () {
   selectedField = fieldDropdown.value;
-  console.log(selectedField);
 });
 
 // Resume Section
@@ -75,8 +74,12 @@ const sectionDropDown = document.getElementById("section");
 sectionDropDown.addEventListener("change", function () {
   selectedSection = sectionDropDown.value;
 });
-console.log(promptTextArea.childNodes);
 
+const textarea = document.querySelector(
+  `textarea:not([name^="${variableIDPrefix}"])`
+);
+
+console.log(textarea);
 buttonElement.addEventListener("click", function () {
   let newPrompt = "";
   if (!selectedField && !selectedSection) return;
